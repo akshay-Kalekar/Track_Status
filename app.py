@@ -16,8 +16,8 @@ Simply copy and paste the entire column of registration numbers, and the app wil
 # Branch-wise assumptions for registration numbers
 st.write("""
 We assume student IDs follow this branch-wise structure:
-- 0000-1000 & 2000-4000: Vellore
-- 4001-7000: Chennai
+- 0000-1000 & 2001-4000: Vellore
+- 1001-2000 & 4001-7000: Chennai
 - 7001-10000: Amravati
 - 10001 onwards: Bhopal
 """)
