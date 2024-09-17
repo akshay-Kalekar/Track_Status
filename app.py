@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(page_title="Status Tracker",page_icon="😺",layout="wide")
+
 # Title of the Streamlit app
 st.title("Student Record Analysis")
 
