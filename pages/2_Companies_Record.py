@@ -30,14 +30,16 @@ st.write("The table below shows the number of students placed in each company:")
 st.dataframe(company_df, use_container_width=True)
 
 # Check if the 'C_Type' column exists and display package type counts
+
 if 'C_Type' in df.columns:
     st.subheader("🎁 Package Type Distribution")
-    
+    count=0
     package_type = {}
     for row in df['C_Type']:
         row = row.capitalize().strip()
         if row:
             package_type[row] = package_type.get(row, 0) + 1
+            count +=1
 
     # Create a DataFrame from the package type counts
     package_type_df = pd.DataFrame(list(package_type.items()), columns=['Package Type', 'Counts'])
@@ -47,6 +49,7 @@ if 'C_Type' in df.columns:
     
     # Display the package type data in a table
     st.dataframe(package_type_df, use_container_width=True)
+    st.write('Total Placed Students :',count)
 else:
     st.warning("Column 'C_Type' not found in the dataset.")
 
