@@ -4,18 +4,21 @@ import pandas as pd
 # Set up the page configuration with title, icon, and wide layout
 st.set_page_config(page_title="Filter Records", page_icon="🙀", layout="wide")
 
-# Title of the app
-st.title("🎓 List of Enrolled Students")
+# # Title of the app
+# st.title("🎓 List of Enrolled Students")
 
+
+# Read the CSV file with brnach
+# df = pd.read_csv('./data/22.csv', na_filter=False)
 # Read the CSV file
 df = pd.read_csv('./BTechData2.csv', na_filter=False)
 
-# Display the full dataframe with hidden index
-st.dataframe(df, use_container_width=True, hide_index=True)
+# # Display the full dataframe with hidden index
+# st.dataframe(df, use_container_width=True, hide_index=True)
 
 
 # Get user input for search terms
-st.subheader("Bhopal Student List & Other Branches College Count")
+st.title("Bhopal Student List & Other Branches College Count")
 getRecords = st.text_input(label="Enter the records to find (space-separated) e.g., 21BCEXXXXX 21BAIYYYYYY ...")
 
 # A button to trigger an action 
@@ -38,13 +41,8 @@ if getRecords or search:
     # Specify the column to search in the DataFrame
     columns_to_search = ['Reg No']  # Ensure the column matches your CSV data
 
-    # Filter the DataFrame based on Bhopal (10-character terms)
     if search_terms_bp:
-        filtered_df_bp = df[df[columns_to_search].apply(lambda row: any(term in row.astype(str).values for term in search_terms_bp), axis=1)]
-        st.subheader("Bhopal Shortlisted Records")
-        st.dataframe(filtered_df_bp, use_container_width=True, hide_index=True)
-        st.write(f"Total shortlisted from Bhopal: **{len(filtered_df_bp)}**")
-
+         st.write(f"Total shortlisted from Bhopal: **{len(search_terms_bp)}**")
     # Display counts for Vellore, Chennai, and Amravati
     if search_terms_ap:
         st.write(f"Total shortlisted from Amravati: **{len(search_terms_ap)}**")
@@ -54,6 +52,13 @@ if getRecords or search:
 
     if search_terms_che:
         st.write(f"Total shortlisted from Chennai: **{len(search_terms_che)}**")
+    # Filter the DataFrame based on Bhopal (10-character terms)
+    if search_terms_bp:
+        filtered_df_bp = df[df[columns_to_search].apply(lambda row: any(term in row.astype(str).values for term in search_terms_bp), axis=1)]
+        st.subheader("Bhopal Shortlisted Records")
+        st.dataframe(filtered_df_bp, use_container_width=True, hide_index=True)
+
+
 
     # Prompt if no search terms were found
     if not search_terms_bp and not search_terms_ap and not search_terms_vel and not search_terms_che:

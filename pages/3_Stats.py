@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Set up the page configuration with a title, icon, and wide layout
-st.set_page_config(page_title="Companies Records", page_icon="🐱", layout="wide")
+st.set_page_config(page_title="Companies Records", page_icon="🎁", layout="wide")
 
 # Load the CSV file
 df = pd.read_csv('./BTechData2.csv', na_filter=False)
